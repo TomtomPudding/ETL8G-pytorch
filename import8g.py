@@ -32,11 +32,23 @@ for j in range(1, 33):
         if r is None:
           break
         if b'.HIRA' in r[2]:
+          # print(hira_cnt, (j - 1) * 5 + id_dataset)
           hira_ary[hira_cnt, (j - 1) * 5 + id_dataset] = np.array(r[-1])
           hira_cnt += 1
         if (re.match(r"[3-4][0-9a-f]{3}", str(hex(r[1])[-4:]) )):
           kanji_ary[kanji_cnt, (j - 1) * 5 + id_dataset] = np.array(r[-1])
           kanji_cnt += 1
+        # if b'.HIRA' in r[2]:
+        #   ary[moji, (j - 1) * 5 + id_dataset] = np.array(r[-1])
+        #   hira_cnt += 1
+      print(hira_cnt, kanji_cnt, (j - 1) * 5 + id_dataset)
+
+    # if(j == 5):
+    #   break
+    # print(len(hira_ary))
+    # print(hira_ary[0][j])
+    # pil_img = Image.fromarray(hira_ary[0][j])
+    # pil_img.show()
 
 np.savez_compressed("hiragana.npz", hira_ary)
 np.savez_compressed("kanji.npz", kanji_ary)
